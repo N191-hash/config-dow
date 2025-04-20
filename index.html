@@ -2,33 +2,90 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Đang tải cấu hình...</title>
+  <title>Tự động tải cấu hình</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #000;
+      background: #000;
       color: #fff;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
+      align-items: center;
       text-align: center;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
     }
+
+    p {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
     a {
       color: #00ffff;
+      text-decoration: underline;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rainbow 5s ease infinite;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Hiệu ứng tuyết */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      z-index: 9999;
+      user-select: none;
+      pointer-events: none;
+      color: #fff;
+      font-size: 1em;
+      animation-name: fall;
+      animation-timing-function: linear;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
     }
   </style>
+
   <script>
     window.onload = function () {
-      window.location.href = "@ngbaluat tweaks mobile new.mobileconfig"; // Đổi tên file tại đây nếu cần
-    }
+      window.location.href = "@ngbaluat tweaks mobile new.mobileconfig";
+    };
+
+    // Tạo hiệu ứng tuyết rơi
+    setInterval(() => {
+      const snowflake = document.createElement("div");
+      snowflake.className = "snowflake";
+      snowflake.innerHTML = "❄";
+      snowflake.style.left = Math.random() * 100 + "vw";
+      snowflake.style.animationDuration = 2 + Math.random() * 3 + "s";
+      snowflake.style.fontSize = 10 + Math.random() * 20 + "px";
+      document.body.appendChild(snowflake);
+      setTimeout(() => snowflake.remove(), 5000);
+    }, 200);
   </script>
 </head>
 <body>
-  <p>Nếu trình duyệt không tự tải tệp, <a href="@ngbaluat tweaks mobile new.mobileconfig">bấm vào đây để tải</a>.</p>
+  <p>Nếu trình duyệt không tự động tải thì <a href="@ngbaluat tweaks mobile new.mobileconfig">bấm vào đây</a>.</p>
   <h2>Đang tiến hành cài đặt cấu hình...</h2>
 </body>
 </html>
